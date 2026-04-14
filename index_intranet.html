@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intranet StartupX</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #0f1923; color: #e2e8f0; min-height: 100vh; }
+
+        .topbar {
+            background: #0a1018;
+            border-bottom: 1px solid #1e3a5f;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo-icon {
+            width: 32px; height: 32px;
+            background: #1a6ef5;
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-icon svg { width: 18px; height: 18px; }
+        .logo-text { font-size: 15px; font-weight: bold; color: #f0f4f8; letter-spacing: 0.3px; }
+        .logo-sub { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
+
+        .topbar-right { display: flex; align-items: center; gap: 20px; }
+        .status-dot { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #10b981; }
+        .dot {
+            width: 7px; height: 7px;
+            border-radius: 50%; background: #10b981;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+        .user-badge {
+            display: flex; align-items: center; gap: 8px;
+            background: #1e3a5f;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px; color: #93c5fd;
+        }
+
+        .hero {
+            background: #0a1018;
+            padding: 2.5rem 2rem 2rem;
+            border-bottom: 1px solid #1e3a5f;
+        }
+        .hero-title { font-size: 22px; font-weight: bold; color: #f0f4f8; margin-bottom: 6px; }
+        .hero-sub { font-size: 13px; color: #64748b; }
+        .hero-meta { display: flex; gap: 24px; margin-top: 1.2rem; flex-wrap: wrap; }
+        .meta-item { font-size: 11px; color: #475569; }
+        .meta-val { color: #93c5fd; font-weight: bold; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            padding: 1.5rem 2rem;
+        }
+        .card {
+            background: #111c2a;
+            border: 1px solid #1e3a5f;
+            border-radius: 10px;
+            padding: 1.2rem;
+        }
+        .card-icon {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 12px;
+        }
+        .card-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
+        .card-value { font-size: 24px; font-weight: bold; color: #f0f4f8; }
+        .card-sub { font-size: 11px; color: #475569; margin-top: 4px; }
+
+        .section { padding: 0 2rem 2rem; }
+        .section-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #475569;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #1e3a5f;
+            padding-bottom: 8px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .svc {
+            background: #111c2a;
+            border: 1px solid #1e3a5f;
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .svc-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .svc-name { font-size: 13px; color: #cbd5e1; font-weight: bold; }
+        .svc-info { font-size: 11px; color: #475569; margin-top: 2px; }
+        .svc-status {
+            margin-left: auto;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+            background: #064e3b;
+            color: #10b981;
+            white-space: nowrap;
+        }
+
+        .alert-box {
+            margin: 0 2rem 1.5rem;
+            background: #0c2a4a;
+            border: 1px solid #1e3a5f;
+            border-left: 3px solid #3b82f6;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            font-size: 12px;
+            color: #93c5fd;
+        }
+        .alert-title { font-weight: bold; margin-bottom: 4px; color: #bfdbfe; }
+
+        .footer {
+            background: #0a1018;
+            border-top: 1px solid #1e3a5f;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .footer-txt { font-size: 11px; color: #334155; }
+        .secure-badge { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #334155; }
+
+        @media (max-width: 800px) {
+            .grid { grid-template-columns: repeat(2, 1fr); }
+            .services { grid-template-columns: 1fr; }
+            .hero-meta { gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topbar">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <div>
+                <div class="logo-text">StartupX</div>
+                <div class="logo-sub">Portail Interne</div>
+            </div>
+        </div>
+        <div class="topbar-right">
+            <div class="status-dot">
+                <div class="dot"></div>
+                Tous les systemes operationnels
+            </div>
+            <div class="user-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+                <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f5909885999a8c90b5868194878180858ddb999a969499">[email&#160;protected]</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-title">Bienvenue sur le portail interne</div>
+        <div class="hero-sub">Acces reserve aux collaborateurs autorises &mdash; StartupX Infrastructure v2.0</div>
+        <div class="hero-meta">
+            <div class="meta-item">Serveur &nbsp;<span class="meta-val">srv-main</span></div>
+            <div class="meta-item">LAN &nbsp;<span class="meta-val">192.168.100.1</span></div>
+            <div class="meta-item">WAN &nbsp;<span class="meta-val">10.0.0.1</span></div>
+            <div class="meta-item">Domaine &nbsp;<span class="meta-val">startupx.local</span></div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <div class="card-icon" style="background:#0c2a4a;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                    <path d="M8 21h8M12 17v4"/>
+                </svg>
+            </div>
+            <div class="card-label">Postes connectes</div>
+            <div class="card-value">1</div>
+            <div class="card-sub">sur le reseau LAN</div>
+        </div>
+        <div class="card">
+            <div class="card-icon" style="background:#064e3b;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+            </div>
+            <div class="card-label">Menaces bloquees</div>
+            <div class="card-value">0</div>
+            <div class="card-sub">Fail2ban actif</div>
+        </div>
+        <div class="card">
+            <div class="card-icon" style="background:#1a1a2e;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                </svg>
+            </div>
+            <div class="card-label">Uptime serveur</div>
+            <div class="card-value">99.9%</div>
+            <div class="card-sub">depuis le demarrage</div>
+        </div>
+        <div class="card">
+            <div class="card-icon" style="background:#1a2a0a;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#84cc16" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <path d="M3 9h18M9 21V9"/>
+                </svg>
+            </div>
+            <div class="card-label">Services actifs</div>
+            <div class="card-value">6 / 6</div>
+            <div class="card-sub">tous operationnels</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Services systeme</div>
+        <div class="services">
+            <div class="svc">
+                <div class="svc-dot" style="background:#10b981;"></div>
+                <div>
+                    <div class="svc-name">Apache2</div>
+                    <div class="svc-info">Port 80 &mdash; Intranet web</div>
+                </div>
+                <span class="svc-status">Actif</span>
+            </div>
+            <div class="svc">
+                <div class="svc-dot" style="background:#10b981;"></div>
+                <div>
+                    <div class="svc-name">DHCP</div>
+                    <div class="svc-info">LAN 192.168.100.0/24</div>
+                </div>
+                <span class="svc-status">Actif</span>
+            </div>
+            <div class="svc">
+                <div class="svc-dot" style="background:#10b981;"></div>
+                <div>
+                    <div class="svc-name">DNS Bind9</div>
+                    <div class="svc-info">startupx.local</div>
+                </div>
+                <span class="svc-status">Actif</span>
+            </div>
+            <div class="svc">
+                <div class="svc-dot" style="background:#10b981;"></div>
+                <div>
+                    <div class="svc-name">Fail2ban</div>
+                    <div class="svc-info">SSH &mdash; max 3 tentatives</div>
+                </div>
+                <span class="svc-status">Actif</span>
+            </div>
+            <div class="svc">
+                <div class="svc-dot" style="background:#10b981;"></div>
+                <div>
+                    <div class="svc-name">UFW Firewall</div>
+                    <div class="svc-info">LAN/WAN segmente</div>
+                </div>
+                <span class="svc-status">Actif</span>
+            </div>
+            <div class="svc">
+                <div class="svc-dot" style="background:#10b981;"></div>
+                <div>
+                    <div class="svc-name">Netdata</div>
+                    <div class="svc-info">Port 19999 &mdash; Monitoring</div>
+                </div>
+                <span class="svc-status">Actif</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert-box">
+        <div class="alert-title">Information securite</div>
+        Toute tentative d'acces non autorisee est enregistree et traitee automatiquement.
+        Les connexions sont surveillees en temps reel. Reseau interne — acces restreint.
+    </div>
+
+    <div class="footer">
+        <div class="footer-txt">StartupX &mdash; Infrastructure Interne &copy; 2026 &mdash; Acces restreint</div>
+        <div class="secure-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z
